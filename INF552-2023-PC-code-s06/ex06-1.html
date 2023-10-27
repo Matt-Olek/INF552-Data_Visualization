@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>INF552 - 2023 - PC 06-1</title>
+    <!-- https://d3js.org/ -->
+    <script type="text/javascript" src="js/d3.v7.min.js"></script>
+    <!-- Your code -->
+    <script type="text/javascript" src="js/ex06-1.js"></script>
+    <style type="text/css">
+        .countryArea {
+            fill: rgb(232, 232, 232);
+        }
+
+        .countryArea:hover {
+            fill: darkgray;
+        }
+
+        .nutsArea {
+            fill: black;
+        }
+
+        .nutsArea:hover {
+            opacity: 0.8;
+        }
+
+        .countryBorder {
+            fill: none;
+            stroke-width: 1px;
+            stroke: rgb(70, 70, 70);
+        }
+
+        .nutsBorder {
+            fill: none;
+            stroke-width: 1px;
+            stroke: rgb(140, 140, 140);
+        }
+
+        .thinBorder {
+            stroke-width: 0.5px;
+        }
+    </style>
+</head>
+
+<body onload="createViz()">
+    <div id="main">
+    </div>
+</body>
+
+</html>

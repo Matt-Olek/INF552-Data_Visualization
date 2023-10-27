@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>INF552 - 2023 - PC 03</title>
+        <!-- https://vega.github.io/vega-lite/ -->
+        <script src="https://cdn.jsdelivr.net/npm/vega@5.25.0"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.15.1"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.22.2"></script>
+        <!-- Your code -->
+        <script src="js/ex03.js"></script>
+        <style>
+body {
+    font-family: sans-serif;
+}
+
+#gridLayout {
+    width:100%;
+    display:grid;
+    grid-template-columns: 7fr 3fr;
+}
+
+#masses {
+    grid-area: 1 / 1 / 3 / 2;
+}
+
+#discOverTime {
+    grid-area: 2 / 2 / 3 / 3;
+    border-left:2px solid #DDD;
+    border-top:2px solid #DDD;
+    text-align: center;
+    padding-bottom:1em;
+}
+
+#vmagByDetect {
+    grid-area: 1 / 2 / 2 / 3;
+    border-left:2px solid #DDD;
+    padding-top:1em;
+    text-align: center;
+}
+
+.formLb {
+    font-size:70%;
+}
+        </style>
+    </head>
+
+    <body onload="createViz();">
+        <div id="gridLayout">
+            <div id="masses">
+                <div>
+                    <form>
+                        <input type="text" name="sampleField" value="*" id="sampleTf"
+                       onkeydown="handleKeyEvent(event);"/>
+                       <input type="button" value="Sample" onclick="setSample();" id="sampleBt"/>
+                       <span class="formLb" style="padding-left:5em;">Scale:</span>
+                       <select id="scaleSelSP" onchange="setScaleSP();">
+                           <option value="linear" selected="selected">Linear</option>
+                           <option value="log">Log</option>
+                       </select>
+                    </form>
+                </div>
+                <div id="massScat"></div>
+            </div>
+            <div id="vmagByDetect">
+                <div id="vmagHist"></div>
+            </div>
+            <div id="discOverTime">
+                <div id="discPlot"></div>
+            </div>
+      </div>
+    </body>
+
+</html>
