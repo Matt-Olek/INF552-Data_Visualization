@@ -25,41 +25,99 @@ const simulation = d3.forceSimulation()
 const color = d3.scaleOrdinal(d3.schemeAccent);
 
 function createGraphLayout(svg){
-    var circles = svg.append("g").attr("id", "nodes");
-    var lines = svg.append("g").attr("id", "links");
-    // let color = d3.scaleOrdinal(d3.schemeAccent);
+    var map = svg.append("g").attr("id", "map");
+    var geoPath = d3.geoPath().projection(ALBERS_PROJ);
+    map.selectAll("path")
+            .data(ctx.states.features)
+            .enter()
+            .append("path")
+            .attr("d", geoPath)
+            .attr("fill", "white")
+            .attr("stroke", "black")
+            .attr("stroke-width", 1);
+
+    
+            
+    let lines = svg.append("g").attr("id", "links");
+    let circles = svg.append("g").attr("id", "nodes");
 
     lines.selectAll("line")
             .data(ctx.links)
             .enter()
             .append("line")
             .attr("stroke", "black")
-            .attr("stroke-opacity", ctx.LINK_ALPHA);
+            .attr("stroke-width", 1)
+            .attr("opacity", ctx.LINK_ALPHA);
 
-    var circles = nodes.selectAll("circle")
+    circles.selectAll("circle")
             .data(ctx.nodes)
             .enter()
             .append("circle")
             .attr("r", ctx.NODE_SIZE_NL)
-            .attr("fill", function(d){return color(d.group);}); 
+            .attr("fill", function(d){return color(d.group);})
+            .attr("stroke", "black")
+            .attr("stroke-width", 1);
 
-    
-
+    d3.select('g#nodes').selectAll('circle')
+        .data(ctx.nodes)
+        .append('title')
+        .text(function(d){return '${d.city}' + ", (" + '$d.id' + ")";});
 
     circles.call(d3.drag().on("start", (event, d) => startDragging(event, d))
                           .on("drag", (event, d) => dragging(event, d))
                           .on("end", (event, d) => endDragging(event, d)));
+
+    simulation.nodes(ctx.nodes).on("tick", simStep);
+    simulation.force("link").links(ctx.links);
 };
 
 function switchVis(showMap){
+    simulation.stop();
     if (showMap){
-        createGraphLayout(svgEl);
         console.log("Showing map");
+        d3.selectAll("#map").transition().duration(ctx.ANIM_DURATION).attr("opacity", 1);
+
+        d3.selectAll("#links line").transition().duration(ctx.ANIM_DURATION).attr("opacity", 0).end().then(
+            function(){d3.selectAll("#links line")
+                        .attr("x1", (d) => (d.source.coordx))
+                        .attr("y1", (d) => (d.source.coordy))
+                        .attr("x2", (d) => (d.target.coordx))
+                        .attr("y2", (d) => (d.target.coordy))
+                    d3.selectAll("#links line").attr("opacity", ctx.LINK_ALPHA);
+            }
+        );
+
+        d3.selectAll("#nodes circle").transition()
+                .duration(ctx.ANIM_DURATION)
+                .attr("cx", d => d.coordx)
+                .attr("cy", d => d.coordy)
+                .attr("r", ctx.NODE_SIZE_MAP);
+
+        
     }
 
     else {
-        // show NL diagram
-        //...
+        console.log("Showing Forces");
+        d3.selectAll("#map").transition().duration(ctx.ANIM_DURATION).attr("opacity", 0);
+        d3.selectAll("#links line").transition().duration(ctx.ANIM_DURATION).attr("opacity", 0).end().then(
+            function(){d3.selectAll("#links line")
+                        .attr("x1", (d) => (d.source.x))
+                        .attr("y1", (d) => (d.source.y))
+                        .attr("x2", (d) => (d.target.x))
+                        .attr("y2", (d) => (d.target.y))
+                    d3.selectAll("#links line").attr("opacity", ctx.LINK_ALPHA);
+            }
+        );
+
+        d3.selectAll("#nodes circle").transition().duration(ctx.ANIM_DURATION)
+            .attr("r", ctx.NODE_SIZE_NL)
+            .attr("cx", (d) => (d.x))
+            .attr("cy", (d) => (d.y));
+
+        // restart simulation after 1 second
+        setTimeout(function(){simulation.alphaTarget(0.3).restart();}, ctx.ANIM_DURATION);
+        simulation.nodes(ctx.nodes).on("tick", simStep);
+        simulation.force("link").links(ctx.links);
     }
 };
 
@@ -74,6 +132,7 @@ function createViz(){
 };
 
 function loadData(svgEl){
+    var geoPath = d3.geoPath().projection(ALBERS_PROJ);
     var airports = d3.json("data/airports.json");
     var flights = d3.json("data/flights.json");
     var states_tz = d3.csv("data/states_tz.csv");
@@ -86,18 +145,22 @@ function loadData(svgEl){
             ctx.airports = ctx.airports.filter(function(d){return d.iata !== "SJU";});
             ctx.states_tz = data[2];
             ctx.states = data[3];
+            console.log("Data loaded.");
             processData();
+            createGraphLayout(svgEl);
+
     }
     ).catch(function(error){
         console.log("Error loading data files: "+error);
     });
+    
+    
     
 };
 
 function processData(){
     // Create Nodes
     var nodes = []
-    var links = []
     ctx.airports.forEach(function(d){
         isInvolved = false;
         for (var i = 0; i < ctx.flights.length; i++){
@@ -106,8 +169,8 @@ function processData(){
                 break;
             }
         }
-        if (isNaN(d.iata.charAt(0)) && isInvolved && d.iata !== "SJU") {
-            nodes.push({id: d.iata, group: ctx.states_tz.filter(function(e){return e.State === d.state;}).TimeZone, state: d.state, city: d.city, });
+        if (isNaN(d.iata.charAt(0)) && isInvolved && d.iata !== "SJU" && ctx.states_tz.filter(function(e){return e.State === d.state;}).length > 0) {
+            nodes.push({id: d.iata, group: ctx.states_tz.filter(function(e){return e.State === d.state;})[0].TimeZone, state: d.state, city: d.city, coordx: ALBERS_PROJ([d.longitude, d.latitude])[0], coordy: ALBERS_PROJ([d.longitude, d.latitude])[1]});
         }
     });
     
@@ -125,7 +188,7 @@ function processData(){
     });
     // Create Links
     ctx.flights = ctx.flights.filter(function(d){
-        if (d.count > ctx.MIN_COUNT){
+        if (d.count > ctx.MIN_COUNT && d.origin !== "SJU" && d.destination !== "SJU"){
         ctx.links.push({source: d.origin, target: d.destination, value: d.count});
         return true;
         }
@@ -174,3 +237,12 @@ function toggleMap(){
     ctx.mapMode = !ctx.mapMode;
     switchVis(ctx.mapMode);
 };
+
+function simStep(){
+    d3.selectAll("#links line").attr("x1", (d) => (d.source.x))
+                               .attr("y1", (d) => (d.source.y))
+                               .attr("x2", (d) => (d.target.x))
+                               .attr("y2", (d) => (d.target.y));
+    d3.selectAll("#nodes circle").attr("cx", (d) => (d.x))
+                                 .attr("cy", (d) => (d.y));
+}
