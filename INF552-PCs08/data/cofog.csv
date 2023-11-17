@@ -1,0 +1,137 @@
+Level,Code,Amount,Description
+1,GF01,,General public services
+2,GF0101,,"Executive and legislative organs, financial and fiscal affairs, external affairs"
+3,GF010101,24.5,Executive and legislative organs
+3,GF010102,12,Financial and fiscal affairs
+3,GF010103,10,External affairs
+2,GF0102,,Foreign economic aid
+3,GF010201,2.0,Economic aid to developing countries and countries in transition
+3,GF010202,1.5,Economic aid routed through international organizations
+2,GF0103,,General services
+3,GF010301,20,General personnel services
+3,GF010302,12,Overall planning and statistical services
+3,GF010303,8.0,Other general services
+2,GF0104,8.1,Basic research
+2,GF0105,0.1,R&D General public services
+2,GF0106,1.6,General public services n.e.c.
+2,GF0107,49.6,Public debt transactions
+2,GF0108,0.01,Transfers of a general character between different levels of government
+1,GF02,,Defence
+2,GF0201,31,Military defence
+2,GF0202,0.3,Civil defence
+2,GF0203,1.8,Foreign military aid
+2,GF0204,2.2,R&D Defence
+2,GF0205,1.2,Defence n.e.c.
+1,GF03,,Public order and safety
+2,GF0301,18.9,Police services
+2,GF0302,5.4,Fire-protection services
+2,GF0303,4.6,Law courts
+2,GF0304,2.6,Prisons
+2,GF0305,0.01,R&D Public order and safety
+2,GF0306,0.7,Public order and safety n.e.c.
+1,GF04,,Economic affairs
+2,GF0401,,"General economic, commercial and labour affairs"
+3,GF040101,11.0,General economic and commercial affairs
+3,GF040102,8.1,General labour affairs
+2,GF0402,,"Agriculture, forestry, fishing and hunting"
+3,GF040201,4,Agriculture
+3,GF040202,1.5,Forestry
+3,GF040203,2.7,Fishing and hunting
+2,GF0403,,Fuel and energy
+3,GF040301,0.5,Coal and other solid mineral fuels
+3,GF040302,1.2,Petroleum and natural gas
+3,GF040303,1.5,Nuclear fuel
+3,GF040304,0.3,Other fuels
+3,GF040305,0.6,Electricity
+3,GF040306,0.6,Non-electric energy
+2,GF0404,,"Mining, manufacturing and construction"
+3,GF040401,0.15,Mining of mineral resources other than mineral fuels
+3,GF040402,0.25,Manufacturing
+3,GF040403,0.2,Construction
+2,GF0405,,Transport
+3,GF040501,7,Road transport
+3,GF040502,6.5,Water transport
+3,GF040503,7.5,Railway transport
+3,GF040504,12.6,Air transport
+3,GF040505,4,Pipeline and other transport
+2,GF0406,0.2,Communication
+2,GF0407,,Other industries
+3,GF040701,1,"Distributive trades, storage and warehousing"
+3,GF040702,2,Hotels and restaurants
+3,GF040703,2.5,Tourism
+3,GF040704,1.5,Multi-purpose development projects
+2,GF0408,,R&D Economic affairs
+3,GF040801,2,"R&D General economic, commercial and labour affairs"
+3,GF040802,2.5,"R&D Agriculture, forestry, fishing and hunting"
+3,GF040803,4,R&D Fuel and energy
+3,GF040804,1,"R&D Mining, manufacturing and construction"
+3,GF040805,2.8,R&D Transport
+3,GF040806,3,R&D Communication
+3,GF040807,1.4,R&D Other industries
+2,GF0409,1.5,Economic affairs n.e.c.
+1,GF05,,Environmental protection
+2,GF0501,9,Waste management
+2,GF0502,5.0,Waste water management
+2,GF0503,1.8,Pollution abatement
+2,GF0504,1.4,Protection of biodiversity and landscape
+2,GF0505,0.3,R&D Environmental protection
+2,GF0506,1.8,Environmental protection n.e.c.
+1,GF06,,Housing and community amenities
+2,GF0601,8.6,Housing development
+2,GF0602,15.4,Community development
+2,GF0603,3.5,Water supply
+2,GF0604,1.3,Street lighting
+2,GF0605,0.01,R&D Housing and community amenities
+2,GF0606,0.1,Housing and community amenities n.e.c.
+1,GF07,,Health
+2,GF0701,,"Medical products, appliances and equipment"
+3,GF070101,9,Pharmaceutical products
+3,GF070102,8,Other medical products
+3,GF070103,12,Therapeutic appliances and equipment
+2,GF0702,,Outpatient services
+3,GF070201,15,General medical services
+3,GF070202,20,Specialized medical services
+3,GF070203,10,Dental services
+3,GF070204,7.2,Paramedical services
+2,GF0703,,Hospital services
+3,GF070301,20,General hospital services
+3,GF070302,15,Specialized hospital services
+3,GF070303,17,Medical and maternity centre services
+3,GF070304,14.1,Nursing and convalescent home services
+2,GF0704,2.5,Public health services
+2,GF0705,2.6,R&D Health
+2,GF0706,1.2,Health n.e.c.
+1,GF08,,"Recreation, culture and religion"
+2,GF0801,11.3,Recreational and sporting services
+2,GF0802,14.6,Cultural services
+2,GF0803,1.2,Broadcasting and publishing services
+2,GF0804,0.4,Religious and other community services
+2,GF0805,0.01,"R&D Recreation, culture and religion"
+2,GF0806,0.01,"Recreation, culture and religion n.e.c."
+1,GF09,,Education
+2,GF0901,,Pre-primary and primary education
+3,GF090101,10,Pre-primary education
+3,GF090102,16.6,Primary education
+2,GF0902,,Secondary education
+3,GF090201,22,Lower-secondary education
+3,GF090202,26.9,Upper-secondary education
+2,GF0903,1.2,Post-secondary non-tertiary education
+2,GF0904,,Tertiary education
+3,GF090401,5,First stage of tertiary education
+3,GF090402,6.9,Second stage of tertiary education
+2,GF0905,6.5,Education not definable by level
+2,GF0906,13.4,Subsidiary services to education
+2,GF0907,0.01,R&D Education
+2,GF0908,1.3,Education n.e.c.
+1,GF10,,Social protection
+2,GF1001,,Sickness and disability
+3,GF100101,30,Sickness
+3,GF100102,23.6,Disability
+2,GF1002,248.9,Old age
+2,GF1003,29.6,Survivors
+2,GF1004,48.5,Family and children
+2,GF1005,35.7,Unemployment
+2,GF1006,19.1,Housing
+2,GF1007,19.1,Social exclusion n.e.c.
+2,GF1008,0.01,R&D Social protection
+2,GF1009,4.5,Social protection n.e.c.

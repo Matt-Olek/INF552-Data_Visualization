@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>INF552 - 2023 - PC 08b</title>
+        <!-- https://d3js.org/ -->
+        <script type="text/javascript" src="js/d3.v7.min.js"></script>
+        <!-- https://github.com/bgrins/TinyColor -->
+        <script type="text/javascript" src="js/tinycolor.js"></script>
+        <script type="text/javascript" src="js/ex08b.js"></script>
+        <style>
+svg {
+    display: block;
+    font: 10px sans-serif;
+    border: 1px solid #444;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.node circle {
+  fill: #999;
+}
+
+.node text {
+  font: 10px sans-serif;
+}
+
+.node--internal circle {
+  fill: #555;
+}
+
+.node--internal text {
+  text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
+}
+
+.link {
+  fill: none;
+  stroke: #555;
+  stroke-opacity: 0.4;
+  stroke-width: 1.5px;
+}
+        </style>
+    </head>
+
+    <body onload="createViz()">
+        <div id="main">
+        </div>
+    </body>
+
+</html>
